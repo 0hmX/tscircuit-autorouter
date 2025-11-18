@@ -1,0 +1,67 @@
+{
+  "layerCount": 2,
+  "minTraceWidth": 0.1,
+  "connections": [
+    {
+      "name": "net1",
+      "pointsToConnect": [
+        {
+          "x": 0,
+          "y": 20,
+          "pointId": "chip_a.A",
+          "layer": "top"
+        },
+        {
+          "x": 50,
+          "y": 0,
+          "pointId": "chip_bc.B",
+          "layer": "top"
+        }
+      ],
+      "externallyConnectedPointIds": [["chip_bc.B", "chip_bc.C"]]
+    },
+    {
+      "name": "dummy_net_for_C",
+      "pointsToConnect": [
+        {
+          "x": 0,
+          "y": 0,
+          "pointId": "chip_bc.C",
+          "layer": "top"
+        }
+      ]
+    }
+  ],
+  "obstacles": [
+    {
+      "type": "rect",
+      "layers": ["top"],
+      "center": { "x": 0, "y": 20 },
+      "width": 10,
+      "height": 10,
+      "connectedTo": []
+    },
+    {
+      "type": "rect",
+      "layers": ["top"],
+      "center": { "x": 0, "y": 0 },
+      "width": 10,
+      "height": 10,
+      "connectedTo": []
+    },
+    {
+      "type": "rect",
+      "layers": ["top"],
+      "center": { "x": 50, "y": 0 },
+      "width": 10,
+      "height": 10,
+      "connectedTo": []
+    }
+  ],
+  "bounds": {
+    "minX": -5,
+    "maxX": 55,
+    "minY": -5,
+    "maxY": 25
+  }
+}
