@@ -16,6 +16,7 @@ import { CapacityPathingSolver } from "./CapacityPathingSolver/CapacityPathingSo
 import { CapacityEdgeToPortSegmentSolver } from "./CapacityMeshSolver/CapacityEdgeToPortSegmentSolver"
 import { getColorMap } from "./colors"
 import { CapacitySegmentToPointSolver } from "./CapacityMeshSolver/CapacitySegmentToPointSolver"
+import { CapacitySegmentToPointSolver2_ObstacleClipping } from "./CapacityMeshSolver/CapacitySegmentToPointSolver2_ObstacleClipping"
 import { HighDensitySolver } from "./HighDensitySolver/HighDensitySolver"
 import type { NodePortSegment } from "../types/capacity-edges-to-port-segments-types"
 import { CapacityPathingSolver2_AvoidLowCapacity } from "./CapacityPathingSolver/CapacityPathingSolver2_AvoidLowCapacity"
@@ -249,7 +250,7 @@ export class AutoroutingPipelineSolver extends BaseSolver {
     ),
     definePipelineStep(
       "segmentToPointSolver",
-      CapacitySegmentToPointSolver,
+      CapacitySegmentToPointSolver2_ObstacleClipping,
       (cms) => {
         const allSegments: NodePortSegment[] = []
         if (cms.edgeToPortSegmentSolver?.nodePortSegments) {
@@ -262,6 +263,9 @@ export class AutoroutingPipelineSolver extends BaseSolver {
             segments: allSegments,
             colorMap: cms.colorMap,
             nodes: cms.capacityNodes!,
+            obstacles: cms.srj.obstacles,
+            margin: (cms.srj.minTraceWidth ?? 0.1) / 2 + 0.1,
+            layerCount: cms.srj.layerCount,
           },
         ]
       },
